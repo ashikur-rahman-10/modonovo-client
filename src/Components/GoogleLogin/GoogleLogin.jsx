@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
     const { googleLogin } = useAuth();
@@ -7,6 +8,12 @@ const GoogleLogin = () => {
         googleLogin()
             .then((result) => {
                 const loggedUser = result.user;
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
                 console.log(loggedUser);
             })
             .catch((error) => {

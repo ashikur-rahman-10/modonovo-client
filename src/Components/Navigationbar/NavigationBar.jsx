@@ -14,20 +14,20 @@ const NavigationBar = () => {
                 HOME
             </NavLink>
             <NavLink
-                to={"/menu"}
+                to={"/instructors"}
                 className="hover:text-blue-400 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
             >
                 Instructors
             </NavLink>
             <NavLink
-                to={"/shop/salad"}
+                to={"/classes"}
                 className="hover:text-blue-400 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
             >
                 Classes
             </NavLink>
 
             <NavLink
-                to={"/contact"}
+                to={"/dashboard"}
                 className="hover:text-blue-400 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
             >
                 Dashboard
