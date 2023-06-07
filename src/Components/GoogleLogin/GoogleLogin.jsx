@@ -8,13 +8,23 @@ const GoogleLogin = () => {
         googleLogin()
             .then((result) => {
                 const loggedUser = result.user;
+                const { displayName, photoURL, email } = loggedUser;
+                const savedUser = { name: displayName, photoURL, email };
+                // console.log(savedUser);
+                fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(savedUser),
+                });
                 Swal.fire({
                     icon: "success",
                     title: "Login Successful",
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                console.log(loggedUser);
+                // console.log(loggedUser);
             })
             .catch((error) => {
                 console.log(error.message);

@@ -2,9 +2,19 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo/logo2.png";
 import "./NavigationBar.css";
+import useAuth from "../../Hooks/useAuth";
+import CustomLoader from "../customLoader/CustomLoader";
 
 const NavigationBar = () => {
-    const user = null;
+    const { user, logout, loading } = useAuth();
+    if (loading) {
+        return <CustomLoader></CustomLoader>;
+    }
+    const handleLogout = () => {
+        logout()
+            .then((result) => {})
+            .catch((error) => {});
+    };
     const navbarOptions = (
         <div className="flex lg:flex-row md:items-center uppercase  flex-col gap-2">
             <NavLink
@@ -33,12 +43,16 @@ const NavigationBar = () => {
                 Dashboard
             </NavLink>
             {user && (
-                <button className="hover:text-blue-400 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl">
+                <button
+                    onClick={handleLogout}
+                    className="hover:text-blue-400 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
+                >
                     Log Out
                 </button>
             )}
         </div>
     );
+
     return (
         <div className="w-full bg-black bg-opacity-10 text-white mx-auto">
             <div className="navbar w-full max-w-7xl mx-auto ">
@@ -107,14 +121,6 @@ const NavigationBar = () => {
                                     <Link className=" bg-gray-400 bg-opacity-50 hover:bg-opacity-20 ">
                                         Settings
                                     </Link>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={handleLogout}
-                                        className=" bg-red-600 bg-opacity-70  font-medium  hover:bg-opacity-20 "
-                                    >
-                                        Logout
-                                    </button>
                                 </li>
                             </ul>
                         </div>

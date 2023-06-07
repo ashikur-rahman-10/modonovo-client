@@ -1,19 +1,48 @@
 import React, { useState } from "react";
 import loginImg from "../../assets/loginGirl.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [show, setShow] = useState(false);
+    const [error, setError] = useState("");
+    const { loginWithPass } = useAuth();
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        loginWithPass(data.email, data.password)
+            .then((result) => {
+                console.log(result.user);
+                setError("");
+                Swal.fire({
+                    icon: "success",
+                    title: "User Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            })
+            .catch((error) => {
+                setError(error.message);
+                console.log(error.message);
+            });
+        // console.log(data);
+    };
+
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
+
     return (
         <div className="min-h-screen w-full max-w-7xl py-16 mx-auto flex items-center justify-center">
             <div className="flex md:flex-row flex-col-reverse items-center justify-center w-full ">
@@ -62,6 +91,13 @@ const Login = () => {
                                 )}
                             </span>
                         </div>
+                        {error && (
+                            <span>
+                                <p className="text-xs font-medium text-error mt-5">
+                                    {error}
+                                </p>
+                            </span>
+                        )}
                         <div>
                             <input
                                 type="submit"
