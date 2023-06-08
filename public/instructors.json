@@ -1,0 +1,153 @@
+[
+    {
+        "name": "Sarah Johnson",
+        "image": "sarah_johnson.jpg",
+        "email": "sarahjohnson@example.com",
+        "courses_taken": 4,
+        "course_names": [
+            "Fashion Sketching",
+            "Pattern Making",
+            "Garment Construction",
+            "Fashion Styling"
+        ]
+    },
+    {
+        "name": "Michael Thompson",
+        "image": "michael_thompson.jpg",
+        "email": "michaelthompson@example.com",
+        "courses_taken": 3,
+        "course_names": [
+            "Textile Design",
+            "Fashion Illustration",
+            "Fashion Marketing"
+        ]
+    },
+    {
+        "name": "Emily Rodriguez",
+        "image": "emily_rodriguez.jpg",
+        "email": "emilyrodriguez@example.com",
+        "courses_taken": 2,
+        "course_names": [
+            "Fashion History",
+            "Draping Techniques"
+        ]
+    },
+    {
+        "name": "David Lee",
+        "image": "david_lee.jpg",
+        "email": "davidlee@example.com",
+        "courses_taken": 1,
+        "course_names": [
+            "Fashion Photography"
+        ]
+    },
+    {
+        "name": "Jennifer Baker",
+        "image": "jennifer_baker.jpg",
+        "email": "jenniferbaker@example.com",
+        "courses_taken": 5,
+        "course_names": [
+            "Fashion Illustration",
+            "Fashion Merchandising",
+            "Textile Design",
+            "Fashion Marketing",
+            "Fashion Show Production"
+        ]
+    },
+    {
+        "name": "Robert Davis",
+        "image": "robert_davis.jpg",
+        "email": "robertdavis@example.com",
+        "courses_taken": 3,
+        "course_names": [
+            "Fashion Design Fundamentals",
+            "Fashion Draping",
+            "Fashion Styling"
+        ]
+    },
+    {
+        "name": "Olivia Turner",
+        "image": "olivia_turner.jpg",
+        "email": "oliviaturner@example.com",
+        "courses_taken": 2,
+        "course_names": [
+            "Fashion Branding",
+            "Fashion Trend Forecasting"
+        ]
+    },
+    {
+        "name": "Daniel Clark",
+        "image": "daniel_clark.jpg",
+        "email": "danielclark@example.com",
+        "courses_taken": 4,
+        "course_names": [
+            "Fashion History",
+            "Fashion Journalism",
+            "Fashion Retailing",
+            "Fashion Accessories Design"
+        ]
+    },
+    {
+        "name": "Sophia Martinez",
+        "image": "sophia_martinez.jpg",
+        "email": "sophiamartinez@example.com",
+        "courses_taken": 3,
+        "course_names": [
+            "Fashion Business Management",
+            "Fashion Photography",
+            "Fashion Portfolio Development"
+        ]
+    },
+    {
+        "name": "Alexander Garcia",
+        "image": "alexander_garcia.jpg",
+        "email": "alexandergarcia@example.com",
+        "courses_taken": 2,
+        "course_names": [
+            "Fashion Product Development",
+            "Fashion Retail Buying"
+        ]
+    },
+    {
+        "name": "Emma Thompson",
+        "image": "emma_thompson.jpg",
+        "email": "emmathompson@example.com",
+        "courses_taken": 4,
+        "course_names": [
+            "Fashion Design Techniques",
+            "Fashion Illustration",
+            "Pattern Making",
+            "Garment Construction"
+        ]
+    },
+    {
+        "name": "William Walker",
+        "image": "william_walker.jpg",
+        "email": "williamwalker@example.com",
+        "courses_taken": 1,
+        "course_names": [
+            "Fashion Runway Production"
+        ]
+    },
+    {
+        "name": "Ava Hernandez",
+        "image": "ava_hernandez.jpg",
+        "email": "avahernandez@example.com",
+        "courses_taken": 3,
+        "course_names": [
+            "Fashion Retail Management",
+            "Fashion Communication",
+            "Fashion Trend Analysis"
+        ]
+    },
+    {
+        "name": "Matthew White",
+        "image": "matthew_white.jpg",
+        "email": "matthewwhite@example.com",
+        "courses_taken": 2,
+        "course_names": [
+            "Fashion Textiles",
+            "Fashion Design Studio"
+        ]
+    }
+]
