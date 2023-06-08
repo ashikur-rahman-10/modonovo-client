@@ -20,7 +20,14 @@ const Register = () => {
     const onSubmit = (data) => {
         const { name, email, password, photo, confirmPass, gender, phone } =
             data;
-        const savedUser = { name, email, photoURL: photo, gender, phone };
+        const savedUser = {
+            name,
+            email,
+            photoURL: photo,
+            gender,
+            phone,
+            role: "Student",
+        };
         if (password === confirmPass) {
             createUser(email, password)
                 .then((result) => {
@@ -66,8 +73,6 @@ const Register = () => {
             console.log(savedUser);
             return;
         }
-
-        console.log(data);
     };
 
     // Scroll to top

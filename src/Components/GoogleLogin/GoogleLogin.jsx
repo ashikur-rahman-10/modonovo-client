@@ -9,7 +9,12 @@ const GoogleLogin = () => {
             .then((result) => {
                 const loggedUser = result.user;
                 const { displayName, photoURL, email } = loggedUser;
-                const savedUser = { name: displayName, photoURL, email };
+                const savedUser = {
+                    name: displayName,
+                    photoURL,
+                    email,
+                    role: "Student",
+                };
                 // console.log(savedUser);
                 fetch("http://localhost:5000/users", {
                     method: "POST",

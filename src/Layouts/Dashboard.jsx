@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { FaBars } from "react-icons/fa";
 import logo from "../assets/logo/logo2.png";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
     const isAdmin = true;
@@ -61,7 +62,7 @@ const Dashboard = () => {
                 >
                     <FaBars></FaBars>
                 </label>
-                <div className="drawer-content">
+                <div className="drawer-content pt-10 md:pt-0">
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side h-screen">
@@ -70,10 +71,20 @@ const Dashboard = () => {
                         className="drawer-overlay"
                     ></label>
                     <ul className="menu p-4 w-80 h-full bg-base-200 pt-12 uppercase text-base-content">
-                        <Link to={"/"} className="w-full ml-4 mb-3">
+                        <Link to={"/"} className="w-full ml-4 my-3">
                             <img className="w-28" src={logo} alt="" />
                         </Link>
-                        {navOptions}
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ rotate: 360, scale: 1 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 260,
+                                damping: 20,
+                            }}
+                        >
+                            {navOptions}
+                        </motion.div>
                         <div className="divider"></div>
                         <li>
                             <NavLink to={"/"}>Home</NavLink>
