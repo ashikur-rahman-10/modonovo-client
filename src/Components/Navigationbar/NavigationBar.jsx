@@ -24,9 +24,9 @@ const NavigationBar = () => {
         }
     };
     const { user, logout, loading } = useAuth();
-    if (loading) {
-        return <CustomLoader></CustomLoader>;
-    }
+    // if (loading) {
+    //     return <CustomLoader></CustomLoader>;
+    // }
 
     const handleLogout = () => {
         logout()

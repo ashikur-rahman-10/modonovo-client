@@ -6,7 +6,10 @@ import Login from "../Pages/LoginRegistration/Login";
 import Register from "../Pages/LoginRegistration/Register";
 import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../Pages/Dashboard/AllUsers.jsx/AllUsers";
-import AdminTest from "../Layouts/adminTest";
+import Instructors from "../Pages/Instructors/Instructors";
+import PrivateRoute from "./PrivateRoutes";
+import AdminOnly from "./AdminOnly";
+import AddClass from "../Pages/Dashboard/InstructorsPage/AddClass";
 
 const router = createBrowserRouter([
     {
@@ -29,22 +32,34 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Register></Register>,
             },
-        ],
-    },
-    {
-        path: "dashboard",
-        element: <Dashboard></Dashboard>,
-        children: [
             {
-                path: "allusers",
-                element: <AllUsers></AllUsers>,
+                path: "instructors",
+                element: <Instructors></Instructors>,
             },
         ],
     },
-    // {
-    //     path: "dashboard",
-    //     element: <AdminTest></AdminTest>,
-    // },
+    {
+        path: "/dashboard",
+        element: (
+            <PrivateRoute>
+                <Dashboard></Dashboard>
+            </PrivateRoute>
+        ),
+        children: [
+            {
+                path: "allusers",
+                element: (
+                    <AdminOnly>
+                        <AllUsers></AllUsers>
+                    </AdminOnly>
+                ),
+            },
+            {
+                path: "addclass",
+                element: <AddClass></AddClass>,
+            },
+        ],
+    },
 ]);
 
 export default router;

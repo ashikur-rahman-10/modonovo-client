@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import loginImg from "../../assets/loginGirl.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { set, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -11,6 +11,9 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const [error, setError] = useState("");
     const { loginWithPass } = useAuth();
+    const location = useLocation();
+    const from = location.state?.pathname || "/";
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -27,6 +30,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                navigate(from);
             })
             .catch((error) => {
                 setError(error.message);

@@ -36,7 +36,7 @@ const Dashboard = () => {
                     <NavLink>Instructors Home</NavLink>
                 </li>
                 <li>
-                    <NavLink>Sidebar Item 2</NavLink>
+                    <NavLink to={"addclass"}>Add A Class</NavLink>
                 </li>
             </>
         );
