@@ -20,7 +20,6 @@ const Login = () => {
     const onSubmit = (data) => {
         loginWithPass(data.email, data.password)
             .then((result) => {
-                console.log(result.user);
                 setError("");
                 Swal.fire({
                     icon: "success",

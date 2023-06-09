@@ -6,6 +6,7 @@ import Login from "../Pages/LoginRegistration/Login";
 import Register from "../Pages/LoginRegistration/Register";
 import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../Pages/Dashboard/AllUsers.jsx/AllUsers";
+import AdminTest from "../Layouts/adminTest";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             },
         ],
     },
+    // {
+    //     path: "dashboard",
+    //     element: <AdminTest></AdminTest>,
+    // },
 ]);
 
 export default router;

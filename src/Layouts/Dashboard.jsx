@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { FaBars } from "react-icons/fa";
 import logo from "../assets/logo/logo2.png";
 import { motion } from "framer-motion";
+import UseAdmin from "../Hooks/UseAdmin";
+import CustomLoader from "../Components/customLoader/CustomLoader";
+import useAuth from "../Hooks/useAuth";
+import UseInstructor from "../Hooks/UseInstructor";
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isStudent = false;
-    const isInstructor = false;
-
+    const { user, loading } = useAuth();
+    if (loading) {
+        return <CustomLoader></CustomLoader>;
+    }
+    const { isAdmin } = UseAdmin();
+    const { isInstructor } = UseInstructor();
     let navOptions;
 
     if (isAdmin) {
