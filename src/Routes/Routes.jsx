@@ -5,11 +5,16 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Login from "../Pages/LoginRegistration/Login";
 import Register from "../Pages/LoginRegistration/Register";
 import Dashboard from "../Layouts/Dashboard";
-import AllUsers from "../Pages/Dashboard/AllUsers.jsx/AllUsers";
 import Instructors from "../Pages/Instructors/Instructors";
 import PrivateRoute from "./PrivateRoutes";
 import AdminOnly from "./AdminOnly";
 import AddClass from "../Pages/Dashboard/InstructorsPage/AddClass";
+import InstructorsOnly from "./InstructorsOnly";
+import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers.jsx/AllUsers";
+import Classes from "../Pages/Classes/Classes";
+import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
+import MyClasses from "../Pages/Dashboard/InstructorsPage/MyClasses";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +41,10 @@ const router = createBrowserRouter([
                 path: "instructors",
                 element: <Instructors></Instructors>,
             },
+            {
+                path: "classes",
+                element: <Classes></Classes>,
+            },
         ],
     },
     {
@@ -56,7 +65,27 @@ const router = createBrowserRouter([
             },
             {
                 path: "addclass",
-                element: <AddClass></AddClass>,
+                element: (
+                    <InstructorsOnly>
+                        <AddClass></AddClass>
+                    </InstructorsOnly>
+                ),
+            },
+            {
+                path: "manageClasses",
+                element: (
+                    <AdminOnly>
+                        <ManageClasses></ManageClasses>
+                    </AdminOnly>
+                ),
+            },
+            {
+                path: "selectedclass",
+                element: <MySelectedClass></MySelectedClass>,
+            },
+            {
+                path: "myclasses",
+                element: <MyClasses></MyClasses>,
             },
         ],
     },

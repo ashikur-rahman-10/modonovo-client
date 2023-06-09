@@ -32,6 +32,8 @@ const AddClass = () => {
                         instructorName: user.displayName,
                         instructorEmail: user.email,
                         status: "Pending",
+                        enrolledStudent: 0,
+                        feedback: "",
                     };
                     axiosSecure.post("/classes", addedClass).then((data) => {
                         if (data.data.acknowledged) {
@@ -112,23 +114,23 @@ const AddClass = () => {
                             />
                         </div>
                     </div>
-                    <div className=" w-full mx-auto">
-                        <div className="form-control w-[300px] md:w-full mx-auto">
-                            <label className="label">
-                                <span className="label-text font-medium">
-                                    Details
-                                </span>
-                            </label>
-                            <textarea
-                                type="text"
-                                {...register("details", {
-                                    required: true,
-                                })}
-                                placeholder="Details"
-                                className="textarea textarea-bordered textarea-info w-full max-w-xl"
-                            />
-                        </div>
+
+                    <div className="form-control w-[300px] md:w-full mx-auto">
+                        <label className="label">
+                            <span className="label-text font-medium">
+                                Details
+                            </span>
+                        </label>
+                        <textarea
+                            type="text"
+                            {...register("details", {
+                                required: true,
+                            })}
+                            placeholder="Details"
+                            className="textarea textarea-bordered textarea-info w-full"
+                        />
                     </div>
+
                     <div className="flex w-full justify-center">
                         <input
                             className=" outline outline-info px-6 py-2 mt-10 rounded-3xl text-info hover:text-white font-semibold hover:bg-info"

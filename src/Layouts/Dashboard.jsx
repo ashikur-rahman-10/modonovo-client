@@ -22,7 +22,7 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink to={"adminHome"}>Admins Home</NavLink>
+                    <NavLink to={"manageClasses"}>Manage Classes</NavLink>
                 </li>
                 <li>
                     <NavLink to={"allusers"}>All Users</NavLink>
@@ -33,7 +33,7 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink>Instructors Home</NavLink>
+                    <NavLink to={"myclasses"}>My classes</NavLink>
                 </li>
                 <li>
                     <NavLink to={"addclass"}>Add A Class</NavLink>
@@ -44,10 +44,13 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink>Student</NavLink>
+                    <NavLink to={"selectedclass"}>My Selected Classes</NavLink>
                 </li>
                 <li>
-                    <NavLink>Sidebar Item 2</NavLink>
+                    <NavLink to={"enrolledclass"}>My Enrolled Classes</NavLink>
+                </li>
+                <li>
+                    <NavLink to={"paymenthistory"}>payment history</NavLink>
                 </li>
             </>
         );
@@ -66,7 +69,7 @@ const Dashboard = () => {
                     htmlFor="my-drawer-2"
                     className="p-3 text-2xl top-0 w-full bg-black opacity-20 absolute z-20 drawer-button lg:hidden"
                 >
-                    <FaBars></FaBars>
+                    <FaBars className="text-white"></FaBars>
                 </label>
                 <div className="drawer-content pt-10 md:pt-0">
                     <Outlet></Outlet>
@@ -96,10 +99,10 @@ const Dashboard = () => {
                             <NavLink to={"/"}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/"}>Instructors</NavLink>
+                            <NavLink to={"/instructors"}>Instructors</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/"}>Classes</NavLink>
+                            <NavLink to={"/classes"}>Classes</NavLink>
                         </li>
                     </ul>
                 </div>

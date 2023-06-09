@@ -11,57 +11,74 @@ const Register = () => {
     const { createUser, updateUser, logout } = useAuth();
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
+    const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMAGE_HOSTING_KEY
+    }`;
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
         const { name, email, password, photo, confirmPass, gender, phone } =
             data;
-        const savedUser = {
-            name,
-            email,
-            photoURL: photo,
-            gender,
-            phone,
-            role: "Student",
-        };
+
         if (password === confirmPass) {
-            createUser(email, password)
-                .then((result) => {
-                    const loggedUser = result.user;
-                    updateUser(name, photo)
-                        .then((result) => {
-                            fetch("http://localhost:5000/users", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify(savedUser),
-                            });
+            const formData = new FormData();
+            formData.append("image", data.image[0]);
+            fetch(imageHostingUrl, {
+                method: "POST",
+                body: formData,
+            })
+                .then((res) => res.json())
+                .then((imgResponse) => {
+                    if (imgResponse.success) {
+                        const imgUrl = imgResponse.data.display_url;
+                        const savedUser = {
+                            name,
+                            email,
+                            photoURL: imgUrl,
+                            gender,
+                            phone,
+                            role: "Student",
+                        };
 
-                            Swal.fire({
-                                icon: "success",
-                                title: "User Created Successfully Please Login to continue",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
+                        createUser(email, password)
+                            .then((result) => {
+                                const loggedUser = result.user;
+                                updateUser(name, imgUrl)
+                                    .then((result) => {
+                                        fetch("http://localhost:5000/users", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            body: JSON.stringify(savedUser),
+                                        });
 
-                            logout()
-                                .then((result) => {
-                                    navigate("/login");
-                                })
-                                .catch((error) => {});
-                        })
-                        .catch((error) => {
-                            console.log(error.message);
-                        });
-                    console.log(loggedUser);
-                })
-                .catch((error) => {
-                    console.log(error.message);
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "User Created Successfully Please Login to continue",
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        });
+
+                                        logout()
+                                            .then((result) => {
+                                                navigate("/login");
+                                            })
+                                            .catch((error) => {});
+                                    })
+                                    .catch((error) => {
+                                        console.log(error.message);
+                                    });
+                                console.log(loggedUser);
+                            })
+                            .catch((error) => {
+                                console.log(error.message);
+                            });
+                    }
                 });
         } else {
             Swal.fire({
@@ -74,6 +91,63 @@ const Register = () => {
             return;
         }
     };
+    // const onSubmit = (data) => {
+    //     const { name, email, password, photo, confirmPass, gender, phone } =
+    //         data;
+    //     const savedUser = {
+    //         name,
+    //         email,
+    //         photoURL: photo,
+    //         gender,
+    //         phone,
+    //         role: "Student",
+    //     };
+    //     if (password === confirmPass) {
+    //         createUser(email, password)
+    //             .then((result) => {
+    //                 const loggedUser = result.user;
+    //                 updateUser(name, photo)
+    //                     .then((result) => {
+    //                         fetch("http://localhost:5000/users", {
+    //                             method: "POST",
+    //                             headers: {
+    //                                 "Content-Type": "application/json",
+    //                             },
+    //                             body: JSON.stringify(savedUser),
+    //                         });
+
+    //                         Swal.fire({
+    //                             icon: "success",
+    //                             title: "User Created Successfully Please Login to continue",
+    //                             showConfirmButton: false,
+    //                             timer: 1500,
+    //                         });
+
+    //                         logout()
+    //                             .then((result) => {
+    //                                 navigate("/login");
+    //                             })
+    //                             .catch((error) => {});
+    //                     })
+    //                     .catch((error) => {
+    //                         console.log(error.message);
+    //                     });
+    //                 console.log(loggedUser);
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error.message);
+    //             });
+    //     } else {
+    //         Swal.fire({
+    //             icon: "error",
+    //             title: "Password is not matching",
+    //             showConfirmButton: false,
+    //             timer: 1500,
+    //         });
+    //         console.log(savedUser);
+    //         return;
+    //     }
+    // };
 
     // Scroll to top
     window.scrollTo({
@@ -168,13 +242,12 @@ const Register = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Photo URL</span>
+                                <span className="label-text">Photo</span>
                             </label>
                             <input
-                                type="text"
-                                placeholder="Photo url"
-                                {...register("photo", { required: true })}
-                                className="input input-bordered input-info"
+                                type="file"
+                                {...register("image", { required: true })}
+                                className="file-input file-input-bordered input-info w-full"
                             />
                         </div>
                         <div className="form-control w-full">

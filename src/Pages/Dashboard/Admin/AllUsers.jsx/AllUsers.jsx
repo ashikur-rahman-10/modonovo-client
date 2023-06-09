@@ -1,11 +1,10 @@
 import React from "react";
-import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import axios from "axios";
-import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
+import useAuth from "../../../../Hooks/useAuth";
+import UseAxiosSecure from "../../../../Hooks/UseAxiosSecure";
 
 const AllUsers = () => {
     const token = localStorage.getItem("access-token");

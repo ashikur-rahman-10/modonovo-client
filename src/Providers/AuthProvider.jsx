@@ -48,33 +48,6 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    //         setUser(currentUser);
-    //         if (currentUser) {
-    //             console.log(currentUser.email);
-    //             axios
-    //                 .post("http://localhost:5000/jwt", {
-    //                     email: currentUser?.email,
-    //                 })
-    //                 .then((data) => {
-    //                     if (data.data) {
-    //                         localStorage.setItem(
-    //                             "access-token",
-    //                             data.data.token
-    //                         );
-    //                     }
-    //                     setLoading(false);
-    //                 });
-    //         } else {
-    //             localStorage.removeItem("access-token");
-    //         }
-    //     });
-    //     return () => {
-    //         return unsubscribe();
-    //     };
-    // }, []);
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -91,11 +64,11 @@ const AuthProvider = ({ children }) => {
                                 data.data.token
                             );
                         }
-                        setLoading(false);
                     });
             } else {
                 localStorage.removeItem("access-token");
             }
+            setLoading(false);
         });
         return () => {
             return unsubscribe();
