@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import { useNavigate } from "react-router-dom";
 const AddClass = () => {
     const { user } = useAuth();
     const [axiosSecure] = UseAxiosSecure();
     const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${
         import.meta.env.VITE_IMAGE_HOSTING_KEY
     }`;
@@ -43,6 +45,7 @@ const AddClass = () => {
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
+                            navigate("/dashboard/myclasses");
                             reset();
                         }
                     });

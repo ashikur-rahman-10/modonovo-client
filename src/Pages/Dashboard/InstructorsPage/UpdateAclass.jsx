@@ -1,14 +1,14 @@
 import React from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 const UpdateAclass = () => {
     const { user } = useAuth();
     const { id } = useParams();
+    const navigate = useNavigate();
     const [axiosSecure] = UseAxiosSecure();
     const { data: course = [], refetch } = useQuery(["course"], async () => {
         const res = await axiosSecure.get(`/instructors/classes/${id}`);
@@ -39,6 +39,8 @@ const UpdateAclass = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    refetch();
+                    navigate("/dashboard/myclasses");
                 } else {
                     Swal.fire({
                         icon: "info",

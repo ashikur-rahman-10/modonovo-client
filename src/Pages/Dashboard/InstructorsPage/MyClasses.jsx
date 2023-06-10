@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyClasses = () => {
     const { user } = useAuth();
@@ -12,7 +13,19 @@ const MyClasses = () => {
         const res = await axiosSecure.get(`/classes/${user.email}`);
         return res.data;
     });
-    console.log(courses);
+    const handleRemove = (id) => {
+        axiosSecure.delete(`/instructors/classes/${id}`).then((data) => {
+            if (data.data.deletedCount > 0) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Class Delete Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                refetch();
+            }
+        });
+    };
     return (
         <div>
             <div>
