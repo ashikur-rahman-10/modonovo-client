@@ -63,7 +63,7 @@ const MyClasses = () => {
                                     <td>{course.status}</td>
                                     <td className=" w-fit flex flex-col gap-2">
                                         <Link
-                                            to={"/edit"}
+                                            to={`updateClass/${course._id}`}
                                             className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md"
                                         >
                                             Update

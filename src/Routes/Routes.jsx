@@ -15,6 +15,7 @@ import AllUsers from "../Pages/Dashboard/Admin/AllUsers.jsx/AllUsers";
 import Classes from "../Pages/Classes/Classes";
 import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
 import MyClasses from "../Pages/Dashboard/InstructorsPage/MyClasses";
+import UpdateAclass from "../Pages/Dashboard/InstructorsPage/UpdateAclass";
 
 const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: "myclasses",
                 element: <MyClasses></MyClasses>,
+            },
+            {
+                path: "myclasses/updateClass/:id",
+                element: <UpdateAclass></UpdateAclass>,
             },
         ],
     },
