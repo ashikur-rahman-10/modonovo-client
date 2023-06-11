@@ -16,6 +16,8 @@ import Classes from "../Pages/Classes/Classes";
 import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
 import MyClasses from "../Pages/Dashboard/InstructorsPage/MyClasses";
 import UpdateAclass from "../Pages/Dashboard/InstructorsPage/UpdateAclass";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import Payments from "../Pages/Dashboard/Payments/Payments";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
         ),
         children: [
             {
+                path: "/dashboard",
+                element: <DashboardHome></DashboardHome>,
+            },
+            {
                 path: "allusers",
                 element: (
                     <AdminOnly>
@@ -91,6 +97,10 @@ const router = createBrowserRouter([
             {
                 path: "myclasses/updateClass/:id",
                 element: <UpdateAclass></UpdateAclass>,
+            },
+            {
+                path: "payments/:id",
+                element: <Payments></Payments>,
             },
         ],
     },

@@ -6,10 +6,37 @@ import { motion } from "framer-motion";
 import useAuth from "../Hooks/useAuth";
 
 const ClassCard = ({ course, handleSelectClass }) => {
-    const { isAdmin } = UseAdmin();
-    const { isInstructor } = UseInstructor();
     const { className, price, availableSeats, image, instructorName, _id } =
         course;
+    const { user } = useAuth();
+    let conditionalButton;
+    if (user) {
+        const { isAdmin } = UseAdmin();
+        const { isInstructor } = UseInstructor();
+        conditionalButton = (
+            <button
+                onClick={() => {
+                    handleSelectClass(_id);
+                }}
+                disabled={isAdmin || isInstructor || availableSeats < 1}
+                className="btn btn-sm hover:outline outline-info   py-2 hover:bg-transparent border-none  rounded-3xl hover:text-info text-white font-semibold bg-info"
+            >
+                Select Now
+            </button>
+        );
+    } else {
+        conditionalButton = (
+            <button
+                onClick={() => {
+                    handleSelectClass(_id);
+                }}
+                disabled={availableSeats < 1}
+                className="btn btn-sm hover:outline outline-info   py-2 hover:bg-transparent border-none  rounded-3xl hover:text-info text-white font-semibold bg-info"
+            >
+                Select Now
+            </button>
+        );
+    }
 
     return (
         <div>
@@ -43,19 +70,7 @@ const ClassCard = ({ course, handleSelectClass }) => {
                             </Link>
                         </div>
                         <div className="card-actions justify-end">
-                            <button
-                                onClick={() => {
-                                    handleSelectClass(_id);
-                                }}
-                                disabled={
-                                    isAdmin ||
-                                    isInstructor ||
-                                    availableSeats < 1
-                                }
-                                className="btn btn-sm hover:outline outline-info   py-2 hover:bg-transparent border-none  rounded-3xl hover:text-info text-white font-semibold bg-info"
-                            >
-                                Select Now
-                            </button>
+                            {conditionalButton}
                         </div>
                     </div>
                 </div>

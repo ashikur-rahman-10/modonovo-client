@@ -13,7 +13,7 @@ const ManageClasses = () => {
         const res = await axiosSecure.get("/classes");
         return res.data;
     });
-    console.log(classes);
+    // console.log(classes);
 
     const handleApprove = (id) => {
         Swal.fire({

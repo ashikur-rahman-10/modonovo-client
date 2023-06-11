@@ -9,14 +9,20 @@ const UseAdmin = () => {
     if (loading) {
         return <CustomLoader></CustomLoader>;
     }
-    const [axiosSecure] = UseAxiosSecure();
-    const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
-        queryKey: ["isAdmin", user?.email],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/users/admin/${user?.email}`);
-            return res.data.result.admin;
-        },
-    });
-    return { isAdmin, isAdminLoading };
+    if (user) {
+        const [axiosSecure] = UseAxiosSecure();
+        const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
+            queryKey: ["isAdmin", user?.email],
+            queryFn: async () => {
+                const res = await axiosSecure.get(
+                    `/users/admin/${user?.email}`
+                );
+                return res.data.result.admin;
+            },
+        });
+        return { isAdmin, isAdminLoading };
+    } else {
+        return { isAdmin: null, isAdminLoading: null };
+    }
 };
 export default UseAdmin;

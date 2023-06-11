@@ -19,6 +19,8 @@ const AllUsers = () => {
         return res.json();
     });
 
+    // console.log(users);
+
     const handleMakeAdmin = (id) => {
         Swal.fire({
             title: "Are you sure?",

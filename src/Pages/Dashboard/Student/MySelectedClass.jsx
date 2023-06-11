@@ -4,6 +4,7 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
     const { user } = useAuth();
@@ -12,7 +13,19 @@ const MySelectedClass = () => {
         const res = await axiosSecure.get(`/carts/${user.email}`);
         return res.data;
     });
-    console.log(courses);
+    const handleRemove = (id) => {
+        axiosSecure.delete(`/carts/saved/${id}`).then((data) => {
+            if (data.data.deletedCount > 0) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Class Removed Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                refetch();
+            }
+        });
+    };
     return (
         <div className="w-full max-w-7xl h-screen mx-auto px-4">
             <div>
@@ -59,7 +72,7 @@ const MySelectedClass = () => {
 
                                         <td className=" w-fit flex flex-col gap-2">
                                             <Link
-                                                to={"/payment"}
+                                                to={`/dashboard/payments/${course._id}`}
                                                 className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md"
                                             >
                                                 Pay

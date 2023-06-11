@@ -8,8 +8,9 @@ import UseAdmin from "../../Hooks/UseAdmin";
 import UseInstructor from "../../Hooks/UseInstructor";
 
 const NavigationBar = () => {
+    // const { isAdmin } = UseAdmin();
+    // const { isInstructor } = UseInstructor();
     const { user, logout, loading } = useAuth();
-
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
@@ -33,6 +34,16 @@ const NavigationBar = () => {
             .then((result) => {})
             .catch((error) => {});
     };
+
+    let conditionalDashboard;
+    // if (isAdmin) {
+    //     <NavLink
+    //     to={"/dashboard"}
+    //     className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
+    // >
+    //     Dashboard
+    // </NavLink>
+    // }
 
     const navbarOptions = (
         <div className="flex lg:flex-row md:items-center uppercase  flex-col gap-2">
