@@ -26,7 +26,8 @@ const Classes = () => {
 
     const handleSelectClass = (id) => {
         const seletedClass = approvedClasses.find((s) => s._id == id);
-        const { className, price, image, instructorName, _id } = seletedClass;
+        const { className, price, image, instructorName, _id, availableSeats } =
+            seletedClass;
         if (user) {
             const savedClass = {
                 className,
@@ -35,6 +36,7 @@ const Classes = () => {
                 instructorName,
                 email: user.email,
                 courseId: _id,
+                availableSeats,
             };
             axiosSecure.post("/carts", savedClass).then((data) => {
                 if (data.data.acknowledged) {

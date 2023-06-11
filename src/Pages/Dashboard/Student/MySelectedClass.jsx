@@ -13,6 +13,7 @@ const MySelectedClass = () => {
         const res = await axiosSecure.get(`/carts/${user.email}`);
         return res.data;
     });
+
     const handleRemove = (id) => {
         axiosSecure.delete(`/carts/saved/${id}`).then((data) => {
             if (data.data.deletedCount > 0) {
@@ -79,6 +80,9 @@ const MySelectedClass = () => {
                                             </Link>
 
                                             <button
+                                                disabled={
+                                                    course.availableSeats < 1
+                                                }
                                                 onClick={() => {
                                                     handleRemove(course._id);
                                                 }}
