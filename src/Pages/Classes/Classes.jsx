@@ -5,20 +5,21 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Classes = () => {
-    const [classes, setClasses] = useState([]);
     const { user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [axiosSecure] = UseAxiosSecure();
-    useEffect(() => {
-        fetch("http://localhost:5000/classes")
-            .then((res) => res.json())
-            .then((data) => {
-                setClasses(data);
-            });
-    }, []);
+
+    const { data: classes = [], refetch: classesRefetch } = useQuery(
+        ["classes"],
+        async () => {
+            const res = await axiosSecure.get(`/classes`);
+            return res.data;
+        }
+    );
     // console.log(classes);
     const approvedClasses = classes.filter(
         (course) => course.status == "Approved"
@@ -64,6 +65,11 @@ const Classes = () => {
             });
         }
     };
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
     return (
         <div className="min-h-screen w-full max-w-7xl mx-auto pt-20 p-4">
             <SectionTitle title={"All Classes"}></SectionTitle>

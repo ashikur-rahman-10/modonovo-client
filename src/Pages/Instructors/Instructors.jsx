@@ -14,6 +14,11 @@ const Instructors = () => {
         }
     );
     // console.log(instructors);
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
     return (
         <div className="w-full max-w-7xl mx-auto pt-20 min-h-screen p-4">
             <SectionTitle title={"Our Instructors"}></SectionTitle>
