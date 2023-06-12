@@ -151,13 +151,15 @@ const ManageClasses = () => {
                                             Denny
                                         </button>
 
-                                        <Link
-                                            to={`/dashboard/givefeadback/${course._id}`}
-                                        >
-                                            <button className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md">
-                                                Feedback
-                                            </button>
-                                        </Link>
+                                        {course.status == "Denied" && (
+                                            <Link
+                                                to={`/dashboard/givefeadback/${course._id}`}
+                                            >
+                                                <button className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md">
+                                                    Feedback
+                                                </button>
+                                            </Link>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

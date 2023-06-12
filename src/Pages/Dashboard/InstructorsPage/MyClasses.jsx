@@ -92,9 +92,14 @@ const MyClasses = () => {
                                         </button>
                                     </td>
                                     <td>
-                                        <Link className="btn btn-xs border-none hover:text-black text-white bg-amber-500 hover:bg-amber-200  py-1 rounded-md">
-                                            View
-                                        </Link>
+                                        {course.status == "Denied" && (
+                                            <Link
+                                                to={`/dashboard/viewfeedback/${course._id}`}
+                                                className="btn btn-xs border-none hover:text-black text-white bg-amber-500 hover:bg-amber-200  py-1 rounded-md"
+                                            >
+                                                View
+                                            </Link>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

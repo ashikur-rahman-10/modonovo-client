@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 const GiveFeedback = () => {
     const { id } = useParams();
-    console.log(id);
     const [axiosSecure] = UseAxiosSecure();
 
     const handleSend = async (event) => {
@@ -15,11 +14,10 @@ const GiveFeedback = () => {
         const message = form.message.value;
         const updates = { message };
         axiosSecure.patch(`/classes/feedback/${id}`, updates).then((data) => {
-            console.log(data.data);
             if (data.data.modifiedCount > 0) {
                 Swal.fire({
                     icon: "success",
-                    title: "Class Added Successfully",
+                    title: "Review Send",
                     showConfirmButton: false,
                     timer: 1500,
                 });
