@@ -10,10 +10,10 @@ const PopulerClass = () => {
     const [axiosSecure] = UseAxiosSecure();
 
     const {
-        data: populerClass = [],
-        refetch: populerClassRefetch,
+        data: popularClass = [],
+        refetch: popularClassRefetch,
         isLoading,
-    } = useQuery(["populerClass"], async () => {
+    } = useQuery(["popularClass"], async () => {
         const res = await axiosSecure.get(`/classes/top`);
         return res.data;
     });
@@ -21,10 +21,10 @@ const PopulerClass = () => {
         return <CustomLoader></CustomLoader>;
     }
     return (
-        <div className="bg-[url('../../../../assets/clasesBanner/classBanner.jpg')]">
-            <SectionTitle title={"our Populer Classes"}></SectionTitle>
+        <div className="bg-[url('https://i.ibb.co/Tt3yVSS/clothes-designers-working-store.jpg')] bg-fixed py-10 my-20">
+            <SectionTitle title={"our Popular Classes"}></SectionTitle>
             <div className="grid md:grid-cols-3 w-fit gap-10 mx-auto p-4">
-                {populerClass.map((course) => (
+                {popularClass.map((course) => (
                     <ClassCard key={course._id} course={course}></ClassCard>
                 ))}
             </div>
