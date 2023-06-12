@@ -38,28 +38,13 @@ const Login = () => {
                     timer: 1500,
                 });
                 console.log({ result });
-                // const email = result.user.email;
-                // console.log(email);
-
-                // const isAdmin = await checkIsAdmin(email);
-                // const isInstructor = await checkIsInstructor(email);
                 navigate(from);
-
-                // if (isAdmin) {
-                //     navigate("/dashboard/manageClasses");
-                // } else if (isInstructor) {
-                //     navigate("/dashboard/myclasses");
-                // } else {
-                //     navigate("/dashboard/selectedclass");
-                // }
-
-                // console.log({ inner: true, isAdmin, isInstructor });
+                window.location.reload();
             })
             .catch((error) => {
                 setError(error.message);
                 console.log(error.message);
             });
-        // console.log(data);
     };
 
     // Scroll to top

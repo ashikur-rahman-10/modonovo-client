@@ -34,6 +34,7 @@ const GoogleLogin = () => {
                     timer: 1500,
                 });
                 navigate(from);
+                window.location.reload();
                 // console.log(loggedUser);
             })
             .catch((error) => {
