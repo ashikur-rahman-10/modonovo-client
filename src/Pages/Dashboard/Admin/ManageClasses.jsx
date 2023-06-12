@@ -4,11 +4,12 @@ import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
-    const [axiosSecure] = UseAxiosSecure();
     const token = localStorage.getItem("access-token");
     const { user } = useAuth();
+    const [axiosSecure] = UseAxiosSecure();
     const { data: classes = [], refetch } = useQuery(["classes"], async () => {
         const res = await axiosSecure.get("/classes");
         return res.data;
@@ -150,31 +151,18 @@ const ManageClasses = () => {
                                             Denny
                                         </button>
 
-                                        <button
-                                            onClick={() =>
-                                                window.my_modal_1.showModal()
-                                            }
-                                            className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md"
+                                        <Link
+                                            to={`/dashboard/givefeadback/${course._id}`}
                                         >
-                                            Feedback
-                                        </button>
+                                            <button className="btn btn-xs border-none hover:text-black text-white bg-sky-500 hover:bg-sky-200  py-1 rounded-md">
+                                                Feedback
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <dialog id="my_modal_1" className="modal">
-                        <form method="dialog" className="modal-box">
-                            <h3 className="font-bold text-lg">Hello!</h3>
-                            <p className="py-4">
-                                Press ESC key or click the button below to close
-                            </p>
-                            <div className="modal-action">
-                                {/* if there is a button in form, it will close the modal */}
-                                <button className="btn">Close</button>
-                            </div>
-                        </form>
-                    </dialog>
                 </div>
             </div>
         </div>

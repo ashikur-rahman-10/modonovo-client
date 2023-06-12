@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Dashboard.css";
-import { FaBars } from "react-icons/fa";
+import {
+    FaBars,
+    FaBook,
+    FaBookMedical,
+    FaBookReader,
+    FaCheck,
+    FaClipboardList,
+    FaHome,
+    FaUserSecret,
+    FaUsers,
+    FaBookOpen,
+    FaWallet,
+} from "react-icons/fa";
 import logo from "../assets/logo/logo2.png";
 import { motion } from "framer-motion";
 import UseAdmin from "../Hooks/UseAdmin";
@@ -22,10 +34,15 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink to={"manageClasses"}>Manage Classes</NavLink>
+                    <NavLink to={"manageClasses"}>
+                        <FaClipboardList></FaClipboardList> Manage Classes
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to={"allusers"}>All Users</NavLink>
+                    <NavLink to={"allusers"}>
+                        {" "}
+                        <FaUsers></FaUsers> All Users
+                    </NavLink>
                 </li>
             </>
         );
@@ -33,10 +50,14 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink to={"myclasses"}>My classes</NavLink>
+                    <NavLink to={"myclasses"}>
+                        <FaBookReader></FaBookReader> My classes
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to={"addclass"}>Add A Class</NavLink>
+                    <NavLink to={"addclass"}>
+                        <FaBookMedical></FaBookMedical> Add A Class
+                    </NavLink>
                 </li>
             </>
         );
@@ -44,17 +65,29 @@ const Dashboard = () => {
         navOptions = (
             <>
                 <li>
-                    <NavLink to={"selectedclass"}>My Selected Classes</NavLink>
+                    <NavLink to={"selectedclass"}>
+                        <FaCheck></FaCheck> My Selected Classes
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to={"enrolledclass"}>My Enrolled Classes</NavLink>
+                    <NavLink to={"enrolledclass"}>
+                        <FaBookOpen></FaBookOpen> My Enrolled Classes
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to={"paymenthistory"}>payment history</NavLink>
+                    <NavLink to={"paymenthistory"}>
+                        <FaWallet></FaWallet> payment history
+                    </NavLink>
                 </li>
             </>
         );
     }
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
 
     return (
         <div>
@@ -96,13 +129,19 @@ const Dashboard = () => {
                         </motion.div>
                         <div className="divider"></div>
                         <li>
-                            <NavLink to={"/"}>Home</NavLink>
+                            <NavLink to={"/"}>
+                                <FaHome></FaHome> Home
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/instructors"}>Instructors</NavLink>
+                            <NavLink to={"/instructors"}>
+                                <FaUserSecret></FaUserSecret> Instructors
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/classes"}>Classes</NavLink>
+                            <NavLink to={"/classes"}>
+                                <FaBook></FaBook> Classes
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

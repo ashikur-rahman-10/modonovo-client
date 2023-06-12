@@ -20,6 +20,7 @@ import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import Payments from "../Pages/Dashboard/Payments/Payments";
 import MyEnrolled from "../Pages/Dashboard/Student/MyEnrolled";
 import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory";
+import GiveFeadback from "../Pages/Dashboard/Admin/GiveFeadback";
 
 const router = createBrowserRouter([
     {
@@ -111,6 +112,14 @@ const router = createBrowserRouter([
             {
                 path: "paymenthistory",
                 element: <PaymentHistory></PaymentHistory>,
+            },
+            {
+                path: "givefeadback/:id",
+                element: (
+                    <AdminOnly>
+                        <GiveFeadback></GiveFeadback>
+                    </AdminOnly>
+                ),
             },
         ],
     },

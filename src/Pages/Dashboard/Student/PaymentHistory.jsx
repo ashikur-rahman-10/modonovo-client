@@ -17,7 +17,6 @@ const PaymentHistory = () => {
             return res.data;
         }
     );
-    console.log(payments);
     return (
         <div className="px-4">
             <SectionTitle title={"Payment History"}></SectionTitle>

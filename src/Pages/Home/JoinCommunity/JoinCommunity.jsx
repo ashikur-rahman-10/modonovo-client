@@ -8,9 +8,8 @@ const JoinCommunity = () => {
         const res = await axiosSecure.get("/users");
         return res.data;
     });
-    console.log(users);
     const student = users.filter((user) => user.role == "Student");
-    console.log(student);
+
     return (
         <div className="join mb-20">
             <div className="flex flex-col items-center space-y-5">

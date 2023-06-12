@@ -68,6 +68,11 @@ const AllUsers = () => {
             }
         });
     };
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
     return (
         <div className="w-full min-h-full">
             <SectionTitle title={"All Users"}></SectionTitle>
