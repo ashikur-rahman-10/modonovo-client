@@ -1,11 +1,12 @@
 import React from "react";
+import Marquee from "react-fast-marquee";
 
 const SectionTitle = ({ title }) => {
     return (
-        <div className="w-full flex justify-center my-10">
-            <p className="text-4xl text-center border-y-2 py-2 uppercase">
-                {title}
-            </p>
+        <div className="w-full max-w-md mx-auto flex bg-transparent justify-center my-10">
+            <Marquee>
+                <p className="text-4xl text-center py-2 uppercase">{title}</p>
+            </Marquee>
         </div>
     );
 };

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUser, updateUser, logout } = useAuth();
@@ -91,63 +92,6 @@ const Register = () => {
             return;
         }
     };
-    // const onSubmit = (data) => {
-    //     const { name, email, password, photo, confirmPass, gender, phone } =
-    //         data;
-    //     const savedUser = {
-    //         name,
-    //         email,
-    //         photoURL: photo,
-    //         gender,
-    //         phone,
-    //         role: "Student",
-    //     };
-    //     if (password === confirmPass) {
-    //         createUser(email, password)
-    //             .then((result) => {
-    //                 const loggedUser = result.user;
-    //                 updateUser(name, photo)
-    //                     .then((result) => {
-    //                         fetch("http://localhost:5000/users", {
-    //                             method: "POST",
-    //                             headers: {
-    //                                 "Content-Type": "application/json",
-    //                             },
-    //                             body: JSON.stringify(savedUser),
-    //                         });
-
-    //                         Swal.fire({
-    //                             icon: "success",
-    //                             title: "User Created Successfully Please Login to continue",
-    //                             showConfirmButton: false,
-    //                             timer: 1500,
-    //                         });
-
-    //                         logout()
-    //                             .then((result) => {
-    //                                 navigate("/login");
-    //                             })
-    //                             .catch((error) => {});
-    //                     })
-    //                     .catch((error) => {
-    //                         console.log(error.message);
-    //                     });
-    //                 console.log(loggedUser);
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error.message);
-    //             });
-    //     } else {
-    //         Swal.fire({
-    //             icon: "error",
-    //             title: "Password is not matching",
-    //             showConfirmButton: false,
-    //             timer: 1500,
-    //         });
-    //         console.log(savedUser);
-    //         return;
-    //     }
-    // };
 
     // Scroll to top
     window.scrollTo({
@@ -157,6 +101,9 @@ const Register = () => {
     });
     return (
         <div className="min-h-screen w-full max-w-7xl py-16 mx-auto flex items-center justify-center">
+            <Helmet>
+                <title>ModoNovo | Sign up</title>
+            </Helmet>
             <div className="flex md:flex-row-reverse flex-col-reverse items-center justify-center w-full ">
                 <div className="md:w-1/2 ">
                     <img src={loginImg} alt="" />

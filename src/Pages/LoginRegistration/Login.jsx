@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -48,6 +49,9 @@ const Login = () => {
 
     return (
         <div className="min-h-screen w-full max-w-7xl py-16 mx-auto flex items-center justify-center">
+            <Helmet>
+                <title>ModoNovo | Login</title>
+            </Helmet>
             <div className="flex md:flex-row flex-col-reverse items-center justify-center w-full ">
                 <div className="md:w-1/2 ">
                     <img src={loginImg} alt="" />

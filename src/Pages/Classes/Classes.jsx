@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
     const { user } = useAuth();
@@ -72,6 +73,9 @@ const Classes = () => {
     });
     return (
         <div className="min-h-screen w-full max-w-7xl mx-auto pt-20 p-4">
+            <Helmet>
+                <title>ModoNovo | Clsses</title>
+            </Helmet>
             <SectionTitle title={"All Classes"}></SectionTitle>
             <div className="grid md:grid-cols-3 w-fit gap-10 mx-auto">
                 {approvedClasses.map((course) => (

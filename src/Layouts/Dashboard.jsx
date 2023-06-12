@@ -20,6 +20,7 @@ import UseAdmin from "../Hooks/UseAdmin";
 import CustomLoader from "../Components/customLoader/CustomLoader";
 import useAuth from "../Hooks/useAuth";
 import UseInstructor from "../Hooks/UseInstructor";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
     const { user, loading } = useAuth();
@@ -91,6 +92,9 @@ const Dashboard = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>ModoNovo | Dashboaard</title>
+            </Helmet>
             <div className="drawer drawer-mobile">
                 <input
                     id="my-drawer-2"
