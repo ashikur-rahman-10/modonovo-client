@@ -29,7 +29,10 @@ const Dashboard = () => {
     }
     const { isAdmin } = UseAdmin();
     const { isInstructor } = UseInstructor();
+
     let navOptions;
+
+    console.log({ isAdmin, isInstructor });
 
     if (isAdmin) {
         navOptions = (

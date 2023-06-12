@@ -20,7 +20,7 @@ const GoogleLogin = () => {
                     role: "Student",
                 };
                 // console.log(savedUser);
-                fetch("http://localhost:5000/users", {
+                fetch("https://modonovo-server.vercel.app/users", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

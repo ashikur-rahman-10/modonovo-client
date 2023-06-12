@@ -11,7 +11,7 @@ const AllUsers = () => {
     const [axiosSecure] = UseAxiosSecure();
     const { user } = useAuth();
     const { data: users = [], refetch } = useQuery(["users"], async () => {
-        const res = await fetch("http://localhost:5000/users", {
+        const res = await fetch("https://modonovo-server.vercel.app/users", {
             headers: {
                 authorization: `bearer ${token}`,
             },

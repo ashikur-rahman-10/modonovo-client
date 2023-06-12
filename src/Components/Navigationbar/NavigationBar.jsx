@@ -6,11 +6,23 @@ import useAuth from "../../Hooks/useAuth";
 import CustomLoader from "../customLoader/CustomLoader";
 import UseAdmin from "../../Hooks/UseAdmin";
 import UseInstructor from "../../Hooks/UseInstructor";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const NavigationBar = () => {
-    // const { isAdmin } = UseAdmin();
-    // const { isInstructor } = UseInstructor();
     const { user, logout, loading } = useAuth();
+    if (loading) {
+        return <CustomLoader></CustomLoader>;
+    }
+    const [axiosSecure] = UseAxiosSecure();
+    const { data: currentUser = [], refetch } = useQuery(
+        ["email"],
+        async () => {
+            const res = await axiosSecure.get(`/users/${user.email}`);
+            return res.data;
+        }
+    );
+
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
@@ -31,19 +43,41 @@ const NavigationBar = () => {
 
     const handleLogout = () => {
         logout()
-            .then((result) => {})
+            .then((result) => {
+                // window.location.reload();
+            })
             .catch((error) => {});
     };
 
     let conditionalDashboard;
-    // if (isAdmin) {
-    //     <NavLink
-    //     to={"/dashboard"}
-    //     className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
-    // >
-    //     Dashboard
-    // </NavLink>
-    // }
+    if (currentUser.role == "Admin") {
+        conditionalDashboard = (
+            <NavLink
+                to={"/dashboard/manageclasses"}
+                className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
+            >
+                Dashboard
+            </NavLink>
+        );
+    } else if (currentUser.role == "Instructor") {
+        conditionalDashboard = (
+            <NavLink
+                to={"/dashboard/myclasses"}
+                className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
+            >
+                Dashboard
+            </NavLink>
+        );
+    } else {
+        conditionalDashboard = (
+            <NavLink
+                to={"/dashboard/selectedclass"}
+                className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
+            >
+                Dashboard
+            </NavLink>
+        );
+    }
 
     const navbarOptions = (
         <div className="flex lg:flex-row md:items-center uppercase  flex-col gap-2">
@@ -66,12 +100,7 @@ const NavigationBar = () => {
                 Classes
             </NavLink>
 
-            <NavLink
-                to={"/dashboard"}
-                className="hover:text-blue-400 border-b md:border-none mt-3 md:mt-0 hover:bg-slate-200 hover:bg-opacity-30  py-2 px-3 rounded-xl"
-            >
-                Dashboard
-            </NavLink>
+            {conditionalDashboard}
 
             {user && (
                 <button

@@ -40,9 +40,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="text-center pb-10">
-                <p>
-                    Copyright © 2023 - All right reserved by ACME Industries Ltd
-                </p>
+                <p>Copyright © 2023 - All right reserved by ModoNovo Academy</p>
             </div>
         </div>
     );

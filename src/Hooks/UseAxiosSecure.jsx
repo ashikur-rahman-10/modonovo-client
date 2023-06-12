@@ -7,7 +7,7 @@ const UseAxiosSecure = () => {
     const { logout } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://modonovo-server.vercel.app",
     });
 
     useEffect(() => {

@@ -7,13 +7,18 @@ import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import UseAdmin from "../../Hooks/UseAdmin";
+import UseInstructor from "../../Hooks/UseInstructor";
+import { checkIsAdmin, checkIsInstructor } from "../../utils";
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const [error, setError] = useState("");
     const { loginWithPass } = useAuth();
     const location = useLocation();
-    const from = location.state?.pathname || "/";
+    const from = location?.state?.pathname || "/";
+
+    // console.log({ from });
     const navigate = useNavigate();
     const {
         register,
@@ -21,9 +26,10 @@ const Login = () => {
         watch,
         formState: { errors },
     } = useForm();
+
     const onSubmit = (data) => {
         loginWithPass(data.email, data.password)
-            .then((result) => {
+            .then(async (result) => {
                 setError("");
                 Swal.fire({
                     icon: "success",
@@ -31,7 +37,23 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                console.log({ result });
+                // const email = result.user.email;
+                // console.log(email);
+
+                // const isAdmin = await checkIsAdmin(email);
+                // const isInstructor = await checkIsInstructor(email);
                 navigate(from);
+
+                // if (isAdmin) {
+                //     navigate("/dashboard/manageClasses");
+                // } else if (isInstructor) {
+                //     navigate("/dashboard/myclasses");
+                // } else {
+                //     navigate("/dashboard/selectedclass");
+                // }
+
+                // console.log({ inner: true, isAdmin, isInstructor });
             })
             .catch((error) => {
                 setError(error.message);

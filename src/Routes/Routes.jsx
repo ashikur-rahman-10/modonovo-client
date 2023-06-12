@@ -63,10 +63,6 @@ const router = createBrowserRouter([
         ),
         children: [
             {
-                path: "/dashboard",
-                element: <DashboardHome></DashboardHome>,
-            },
-            {
                 path: "allusers",
                 element: (
                     <AdminOnly>
@@ -96,7 +92,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "myclasses",
-                element: <MyClasses></MyClasses>,
+                element: (
+                    <InstructorsOnly>
+                        <MyClasses></MyClasses>
+                    </InstructorsOnly>
+                ),
             },
             {
                 path: "myclasses/updateClass/:id",

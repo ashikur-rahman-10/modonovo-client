@@ -49,14 +49,17 @@ const Register = () => {
                                 const loggedUser = result.user;
                                 updateUser(name, imgUrl)
                                     .then((result) => {
-                                        fetch("http://localhost:5000/users", {
-                                            method: "POST",
-                                            headers: {
-                                                "Content-Type":
-                                                    "application/json",
-                                            },
-                                            body: JSON.stringify(savedUser),
-                                        });
+                                        fetch(
+                                            "https://modonovo-server.vercel.app/users",
+                                            {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                body: JSON.stringify(savedUser),
+                                            }
+                                        );
 
                                         Swal.fire({
                                             icon: "success",
