@@ -2,6 +2,7 @@ import React from "react";
 import TopBanner from "./TopBanner/TopBanner";
 import PopulerClass from "./PopulerClass/PopulerClass";
 import PopulerInstructors from "./PopulerInstructors/PopulerInstructors";
+import JoinCommunity from "../JoinCommunity/JoinCommunity";
 
 const Home = () => {
     window.scrollTo({
@@ -14,6 +15,7 @@ const Home = () => {
             <TopBanner></TopBanner>
             <PopulerClass></PopulerClass>
             <PopulerInstructors></PopulerInstructors>
+            <JoinCommunity></JoinCommunity>
         </div>
     );
 };
