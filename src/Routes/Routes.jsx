@@ -16,7 +16,6 @@ import Classes from "../Pages/Classes/Classes";
 import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
 import MyClasses from "../Pages/Dashboard/InstructorsPage/MyClasses";
 import UpdateAclass from "../Pages/Dashboard/InstructorsPage/UpdateAclass";
-import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import Payments from "../Pages/Dashboard/Payments/Payments";
 import MyEnrolled from "../Pages/Dashboard/Student/MyEnrolled";
 import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory";
